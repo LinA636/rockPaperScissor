@@ -103,4 +103,4 @@ function printFinalScore() {
 
 let counterPlayerWin = 0;
 let counterCompWin = 0;
-game();
+/* game(); */
