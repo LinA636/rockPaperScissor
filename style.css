@@ -4,20 +4,30 @@
     --font-family: 'comic sans ms', Arial, Helvetica, sans-serif;
 }
 
+html, body{
+    height: 100%;
+    width: 100%;
+}
+
 body {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-content: center;
     gap: 20px;
     background-color: var(--main-background-color);
-    border: 1px solid white;
 }
 
 p {
     color: var(--text-border-color);
     font-family: var(--font-family);
     font-weight: bold;
+}
+
+/* header & main-container styles */
+.header, .main-container{
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .header {
@@ -27,25 +37,39 @@ p {
     align-content: center;
     padding-left: 15%;
     padding-right: 15%;
-    margin-left: 10%;
-    margin-right: 10%;
     border: 1px ridge var(--text-border-color);
     border-radius: 10px;
+}
+
+
+.footer{
+    align-self: center;
 }
 
 .main-container {
     flex: 1;
     align-self: center;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
     gap: 20px;
+
     border:1px solid white;
+    height: 100%;
+
 }
 
 .button-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-content: center;
+}
+
+
+img{
+    max-width: 20%;
+    height: auto;
+
 }
