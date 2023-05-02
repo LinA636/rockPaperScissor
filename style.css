@@ -52,11 +52,10 @@ p {
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-content: center;
     gap: 20px;
 
-    border:1px solid white;
     height: 100%;
 
 }
@@ -65,11 +64,18 @@ p {
     display: flex;
     justify-content: space-around;
     align-content: center;
+    gap: 10%;
 }
 
+.main-container p{
+    align-self: center;
+}
 
 img{
-    max-width: 20%;
-    height: auto;
+    max-width: 30%;
+}
 
+button{
+    flex-grow: 0;
+    width: fit-content;
 }
