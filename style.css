@@ -4,7 +4,8 @@
     --font-family: 'comic sans ms', Arial, Helvetica, sans-serif;
 }
 
-html, body{
+html,
+body {
     height: 100%;
     width: 100%;
 }
@@ -18,14 +19,16 @@ body {
     background-color: var(--main-background-color);
 }
 
-p {
+p,
+div {
     color: var(--text-border-color);
     font-family: var(--font-family);
     font-weight: bold;
 }
 
 /* header & main-container styles */
-.header, .main-container{
+.header,
+.main-container {
     margin-left: 10%;
     margin-right: 10%;
 }
@@ -42,7 +45,7 @@ p {
 }
 
 
-.footer{
+.footer {
     align-self: center;
 }
 
@@ -52,30 +55,50 @@ p {
 
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: start;
     align-content: center;
-    gap: 20px;
+    gap: 20%;
 
     height: 100%;
+    padding-top: 10%;
 
 }
 
-.button-container {
+.score-container{
+    align-self: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: space-around;
+}
+
+.show-selection{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5%;
+}
+
+.image-container {
     display: flex;
     justify-content: space-around;
     align-content: center;
     gap: 10%;
 }
 
-.main-container p{
+.intro {
     align-self: center;
 }
 
-img{
-    max-width: 30%;
+img {
+    width: 150px;
+    height: 100px;
+    object-fit: fill;
+    border-radius: 30%;
 }
 
-button{
+.image-container div {
     flex-grow: 0;
-    width: fit-content;
+
 }

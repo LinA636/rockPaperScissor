@@ -44,10 +44,11 @@ function game() {
 }
 
 function getPlayerChoice() {
-    // get player to enter their choice
-    let playerSelection = prompt("Please enter Paper, Rock or Scissor: ");
+    // get key of the image the player clicked on
+    const playerSelection = document.querySelector(`.key[data-key="${e.key}"]`);
     // convert entered choice into lowerCase letters
     // to be able to compare.
+    console.log(playerSelection);
     playerSelection = playerSelection.toLowerCase();
 
     while (!controlPlayerChoice(playerSelection)) {
@@ -68,7 +69,9 @@ function controlPlayerChoice(playerSelection) {
 }
 
 function printScore() {
-    // prints current score based on the global Variables
+    const paraScoreText = document.querySelector(".score");
+    paraScoreText.textContent("test");
+
     if (counterPlayerWin > counterCompWin) {
         // player is leading
         console.log(`current score: ${counterPlayerWin}:${counterCompWin} for you`);
@@ -100,7 +103,75 @@ function printFinalScore() {
     }
 }
 
+function createDOMNodes() {
+    const mainContainer = document.querySelector(".main-container");
+    const imageContainer = document.querySelector(".image-container");
+       
+    const divScoreContainer = document.createElement("div");
+    divScoreContainer.classList.add("score-container");
+    mainContainer.insertBefore(divScoreContainer, imageContainer);
+
+    const divShowSelection = document.createElement("div");
+    divScoreContainer.appendChild(divShowSelection);
+    divShowSelection.classList.add("show-selection");
+
+    const img1 = document.createElement("img");
+    img1.setAttribute("class", "player-image");
+    img1.src = "./images/paper.png";
+    divShowSelection.appendChild(img1);
+    
+    const paraVS = document.createTextNode("vs.");
+    divShowSelection.appendChild(paraVS);
+
+    const img2 = document.createElement("img");
+    img2.setAttribute("class", "computer-image");
+    img2.src = "./images/paper.png";
+    divShowSelection.appendChild(img2);
+
+    const paraScoreText = document.createElement("p");
+    paraScoreText.setAttribute("class", "score");
+    divScoreContainer.appendChild(paraScoreText);
+}
+
 
 let counterPlayerWin = 0;
 let counterCompWin = 0;
-/* game(); */
+let counterClicks = 0;
+
+function handleClick(playerSelection) {
+    let computerSelection = getComputerChoice();
+    playRound(playerSelection, computerSelection);
+    counterClicks += 1;
+    changePageScreen(counterClicks, playerSelection, computerSelection);
+}
+
+function changePageScreen(counterClicks, playerSelection, computerSelection) {
+    const gameRoundParagraph = document.querySelector(".intro");
+    if (counterClicks == 1) {
+        createDOMNodes();
+        changeImage(playerSelection, ".player-image");
+        changeImage(computerSelection, ".comp-image");
+        gameRoundParagraph.innerHTML = `${counterClicks} out of 1`;
+    } else if (counterClicks <= 3) {
+        gameRoundParagraph.innerHTML = `${counterClicks} out of 3`;
+    } else {
+        gameRoundParagraph.innerHTML = `logic not yet implented`;
+    }
+
+}
+
+function changeImage(selction, selectorKey){
+    const img = document.querySelector(".player-image");
+    if(selction == "paper"){
+        img.src = "./images/paper.png";
+    } else if (selction == "rock"){
+        img.src = "../image/rock.png";
+    } else if (selction == "scissor"){
+        img.src = "./images/scissor.png";
+    } else {
+
+    }
+}
+
+
+
