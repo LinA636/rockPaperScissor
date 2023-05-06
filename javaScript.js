@@ -96,8 +96,8 @@ function createDOMNodes() {
 
     const scoreDisplay = document.createElement("p");
     scoreDisplay.classList.add("score-display");
-    scoreDisplay.setAttribute("class", "score-display");
-    rightContainer.appendChild(scoreDisplay);
+/*     scoreDisplay.setAttribute("class", "score-display");
+ */    rightContainer.appendChild(scoreDisplay);
 }
 
 function changeImage(selection, selectorKey){

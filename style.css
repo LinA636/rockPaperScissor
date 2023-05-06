@@ -44,17 +44,15 @@ div {
     border-radius: 10px;
 }
 
-
-
 .main-container {
     flex: 1;
     align-self: center;
 
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     align-content: center;
-    gap: 20%;
+    gap: 5%;
 
     height: 100%;
     padding-top: 10%;
@@ -65,22 +63,31 @@ div {
     align-self: center;
 
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-content: flex-start;
     gap: 5%;
+
+    width: 100%;
 }
 
 .button-container {
+    padding: 10%;
+
     display: flex;
     justify-content: space-around;
     align-content: center;
-    gap: 10%;
+    gap: 10%
 }
 
+button{
+    border-radius: 30px;
+    overflow: hidden;
+    max-width: 200px;
+}
 
-img {
-    width: 150px;
-    height: 100px;
+.button-container img {
+    width: 100%;
+    height: auto;
     object-fit: fill;
 }
 
@@ -89,26 +96,60 @@ img {
 }
 
 /* to be added via JS */
-.left-container{
+.left-container {
     align-self: stretch;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
+    width: 80%;
+    height: auto;
 }
 
-.imgOfSelection-container{
+.imgOfSelection-container {
+    margin: 5px;
+
     display: flex;
     justify-content: space-around;
     align-items: center;
+    gap: 5%;
+
+    width: 100%;
+    height: auto;
 }
 
-.right-container{
+.imgOfSelection-container img {
+    width: 150px;
+    height: auto;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.right-container {
     align-self: stretch;
 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-content: space-around;
+
+    width: 20%;
+    height: auto;
+}
+
+/* borders for editing */
+.button-container,
+.main-container,
+.change-container,
+.left-container,
+.right-container,
+.game-state-text,
+.imgOfSelection-container,
+.player-selection,
+.comp-selection,
+.win-loose-announcement,
+.score-display {
+    border: 1px solid white;
 }
