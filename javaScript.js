@@ -55,43 +55,60 @@ function printFinalScore() {
 }
 
 function createDOMNodes() {
-    const mainContainer = document.querySelector(".main-container");
-    const imageContainer = document.querySelector(".button-container");
-       
-    const divScoreContainer = document.createElement("div");
-    divScoreContainer.classList.add("score-container");
-    mainContainer.insertBefore(divScoreContainer, imageContainer);
+    const changeContainer = document.querySelector(".change-container");
+    const gameStateTest = document.querySelector(".game-state-text"); 
+    
+    //leftContainer and its children
+    const leftContainer = document.createElement("div");
+    leftContainer.classList.add("left-container");
+    changeContainer.appendChild(leftContainer);
+    leftContainer.appendChild(gameStateTest);
+    
+    const imgOfSelectionContainer = document.createElement("div");
+    imgOfSelectionContainer.classList.add("imgOfSelection-container");
+    leftContainer.appendChild(imgOfSelectionContainer);
 
-    const divShowSelection = document.createElement("div");
-    divScoreContainer.appendChild(divShowSelection);
-    divShowSelection.classList.add("show-selection");
+    const winLooseAnnouncement = document.createElement("p");
+    winLooseAnnouncement.classList.add("win-loose-announcement");
+    leftContainer.appendChild(winLooseAnnouncement);
 
-    const img1 = document.createElement("img");
-    img1.setAttribute("class", "player-image");
-    img1.src = "./images/paper.png";
-    divShowSelection.appendChild(img1);
+    //children of imgOfSelection-container
+    const playerSelectionImg = document.createElement("img");
+    playerSelectionImg.classList.add("player-selection");
+    playerSelectionImg.src = "./image/paper.png";
+    imgOfSelectionContainer.appendChild(playerSelectionImg);
     
     const paraVS = document.createTextNode("vs.");
-    divShowSelection.appendChild(paraVS);
+    imgOfSelectionContainer.appendChild(paraVS);
 
-    const img2 = document.createElement("img");
-    img2.setAttribute("class", "computer-image");
-    img2.src = "./images/paper.png";
-    divShowSelection.appendChild(img2);
+    const compSelectionImg = document.createElement("img");
+    compSelectionImg.classList.add("comp-selection");
+    compSelectionImg.src = "./images/paper.png";
+    imgOfSelectionContainer.appendChild(compSelectionImg);
 
-    const paraScoreText = document.createElement("p");
-    paraScoreText.setAttribute("class", "score");
-    divScoreContainer.appendChild(paraScoreText);
+    //right-container and its children
+    const rightContainer = document.createElement("div");
+    rightContainer.classList.add("right-container");
+    changeContainer.appendChild(rightContainer);
+
+    const paraTotalScore = document.createTextNode("total Score:");
+    rightContainer.appendChild(paraTotalScore);
+
+    const scoreDisplay = document.createElement("p");
+    scoreDisplay.classList.add("score-display");
+    scoreDisplay.setAttribute("class", "score-display");
+    rightContainer.appendChild(scoreDisplay);
 }
 
-function changeImage(selction, selectorKey){
-    const img = document.querySelector(".player-image");
-    if(selction == "paper"){
-        img.src = "./images/paper.png";
-    } else if (selction == "rock"){
-        img.src = "../image/rock.png";
-    } else if (selction == "scissor"){
-        img.src = "./images/scissor.png";
+function changeImage(selection, selectorKey){
+    const imgage = document.querySelector(".player-image");
+    if(selection == "paper"){
+        imgage.src = "./images/paper.png";
+        imgage.alt = "Hand fomring a paper.";
+    } else if (selection == "rock"){
+        imgage.src = "../image/rock.png";
+    } else if (selection == "scissor"){
+        imgage.src = "./images/scissor.png";
     } else {
 
     }
