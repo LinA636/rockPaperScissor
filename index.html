@@ -17,18 +17,20 @@
     </div>
 
     <div class="main-container">
-        <p class="intro">
-           Let's play!
-        </p>
+        <div class="change-container">
+            <p class="game-state-text">
+                Let's play!
+            </p>
+        </div>
 
-        <div class="image-container">
-            <button class="rock" onclick="handleClick('rock')">
+        <div class="button-container">
+            <button class="rock" onclick="handleButtonClick('rock')">
                 <img src="./images/rock.png" alt="Hand forming a rock.">
             </button>
-            <button class="paper" onclick="handleClick('paper')">
+            <button class="paper" onclick="handleButtonClick('paper')">
                 <img src="./images/paper.png" alt="Hand forming a paper.">
             </button>
-            <button class="scissor" onclick="handleClick('scissor')">
+            <button class="scissor" onclick="handleButtonClick('scissor')">
                 <img src="./images/scissor.png" alt="Hand forming a scissor.">
             </button>
         </div>
