@@ -67,6 +67,7 @@ div {
     display: flex;
     justify-content: flex-start;
     align-content: flex-start;
+    gap: 5%;
 }
 
 .button-container {
@@ -108,6 +109,6 @@ img {
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-content: space-around;
 }
