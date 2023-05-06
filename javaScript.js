@@ -5,67 +5,19 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    // returns a text based on if player won or lost this round
-
     if (playerSelection === 'rock' && computerSelection === 'rock'
         || playerSelection === 'paper' && computerSelection === 'paper'
         || playerSelection === 'scissor' && computerSelection === 'scissor') {
-        // tie
-        console.log("It seams like neither your nor the computers weapon can beat the other.");
+        return "tie";
     } else if (playerSelection === 'rock' && computerSelection === 'scissor'
         || playerSelection === 'paper' && computerSelection === 'rock'
         || playerSelection === 'scissor' && computerSelection === 'paper') {
-        // player wins
-        console.log("Your choice was well made.");
         counterPlayerWin += 1;
+        return "won";
     } else {
-        // computer wins
-        console.log("I'm sure you will do better next time!");
         counterCompWin += 1;
+        return "lost";
     }
-}
-
-function game() {
-    // one games persists of 5 rounds
-    // keep track of the outcomes as well as tell the player
-    // end the game by telling the winner
-    console.log("Lets see if you choose wisely..")
-    for (let i = 0; i < 5; i++) {
-        let playerSelection = getPlayerChoice();
-        let computerSelection = getComputerChoice();
-        playRound(playerSelection, computerSelection);
-        if (i < 4) {
-            printScore();
-        }
-    }
-
-    printFinalScore();
-
-}
-
-function getPlayerChoice() {
-    // get key of the image the player clicked on
-    const playerSelection = document.querySelector(`.key[data-key="${e.key}"]`);
-    // convert entered choice into lowerCase letters
-    // to be able to compare.
-    console.log(playerSelection);
-    playerSelection = playerSelection.toLowerCase();
-
-    while (!controlPlayerChoice(playerSelection)) {
-        playerSelection = getPlayerChoice();
-    }
-    return playerSelection;
-}
-
-function controlPlayerChoice(playerSelection) {
-    /* controlPlayerChoice controls the input of the player.
-    If the input is not 'Rock', 'Paper', or 'Scissor' the function will return false
-    otherwise true */
-    if (playerSelection === 'rock' || playerSelection === 'paper' || playerSelection === 'scissor') {
-        return true;
-    }
-    console.log("Your choice of weapon is not allowed. Make a new decision: ");
-    return false;
 }
 
 function printScore() {
@@ -74,15 +26,14 @@ function printScore() {
 
     if (counterPlayerWin > counterCompWin) {
         // player is leading
-        console.log(`current score: ${counterPlayerWin}:${counterCompWin} for you`);
-        console.log(`Keep  it up!`);
+        // change "score-display"
     } else if (counterPlayerWin < counterCompWin) {
         // computer is leading
-        console.log(`current score: ${counterPlayerWin}:${counterCompWin} for your opponent`);
-        console.log(`Don't give up!`);
+        // change "score-display"
+        
     } else {
         // its a tie
-        console.log(`current score: ${counterPlayerWin}:${counterCompWin}`);
+        // change "score-display"
     }
 
 }
@@ -105,7 +56,7 @@ function printFinalScore() {
 
 function createDOMNodes() {
     const mainContainer = document.querySelector(".main-container");
-    const imageContainer = document.querySelector(".image-container");
+    const imageContainer = document.querySelector(".button-container");
        
     const divScoreContainer = document.createElement("div");
     divScoreContainer.classList.add("score-container");
@@ -133,33 +84,6 @@ function createDOMNodes() {
     divScoreContainer.appendChild(paraScoreText);
 }
 
-
-let counterPlayerWin = 0;
-let counterCompWin = 0;
-let counterClicks = 0;
-
-function handleClick(playerSelection) {
-    let computerSelection = getComputerChoice();
-    playRound(playerSelection, computerSelection);
-    counterClicks += 1;
-    changePageScreen(counterClicks, playerSelection, computerSelection);
-}
-
-function changePageScreen(counterClicks, playerSelection, computerSelection) {
-    const gameRoundParagraph = document.querySelector(".intro");
-    if (counterClicks == 1) {
-        createDOMNodes();
-        changeImage(playerSelection, ".player-image");
-        changeImage(computerSelection, ".comp-image");
-        gameRoundParagraph.innerHTML = `${counterClicks} out of 1`;
-    } else if (counterClicks <= 3) {
-        gameRoundParagraph.innerHTML = `${counterClicks} out of 3`;
-    } else {
-        gameRoundParagraph.innerHTML = `logic not yet implented`;
-    }
-
-}
-
 function changeImage(selction, selectorKey){
     const img = document.querySelector(".player-image");
     if(selction == "paper"){
@@ -172,6 +96,47 @@ function changeImage(selction, selectorKey){
 
     }
 }
+
+function changeWinLooseAnnouncement(winLoose){
+    if(winLoose == "won"){
+        // change text in "win-loose-announcement"
+    }else if(winLoose == "lost"){
+        // change text in "win-loose-announcement"
+    }else if(winLoose == "tie"){
+        // change text in "win-loose-announcement"
+    }else{
+        // error handling
+    }
+}
+
+function changeGameStateText(counterClicks){
+    const gameStateTextParagraph = document.querySelector(".game-state-text");
+    gameStateTextParagraph.innerHTML = `${counterClicks} out of 5`;  
+}
+
+function changeScoreDisplay(){
+    // change the text in "score-display"
+}
+
+function handleButtonClick(playerSelection) {
+    counterClicks += 1;
+    if(counterClicks == 1){
+        createDOMNodes();
+    }
+    let computerSelection = getComputerChoice();
+    changeImage(playerSelection, ".player-image");
+    changeImage(computerSelection, ".comp-image")
+    let winLoose = playRound(playerSelection, computerSelection);
+    changeWinLooseAnnouncement(winLoose);
+    changeGameStateText(counterClicks);
+    changeScoreDisplay();
+    
+}
+
+let counterPlayerWin = 0;
+let counterCompWin = 0;
+let counterClicks = 0;
+
 
 
 
