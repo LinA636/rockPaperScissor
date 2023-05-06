@@ -45,9 +45,6 @@ div {
 }
 
 
-.footer {
-    align-self: center;
-}
 
 .main-container {
     flex: 1;
@@ -64,41 +61,53 @@ div {
 
 }
 
-.score-container{
+.change-container {
     align-self: center;
 
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: space-around;
+    justify-content: flex-start;
+    align-content: flex-start;
 }
 
-.show-selection{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    gap: 5%;
-}
-
-.image-container {
+.button-container {
     display: flex;
     justify-content: space-around;
     align-content: center;
     gap: 10%;
 }
 
-.intro {
-    align-self: center;
-}
 
 img {
     width: 150px;
     height: 100px;
     object-fit: fill;
-    border-radius: 30%;
 }
 
-.image-container div {
-    flex-grow: 0;
+.footer {
+    align-self: center;
+}
 
+/* to be added via JS */
+.left-container{
+    align-self: stretch;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.imgOfSelection-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.right-container{
+    align-self: stretch;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: space-around;
 }
