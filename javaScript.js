@@ -44,7 +44,7 @@ function showFinalScore() {
     imgOfSelectionContainer.remove();
 
     const gameStateText = document.querySelector(".game-state-text");
-    gameStateText.innerHTML = `Game over`;
+    gameStateText.remove();
 
     const winLooseAnnouncement = document.querySelector(".win-loose-announcement");
     if(counterPlayerWin > counterCompWin){
@@ -54,6 +54,9 @@ function showFinalScore() {
     } else {
         winLooseAnnouncement.innerHTML = "You lost.";
     }
+
+    const scoreDisplayText = document.querySelector(".score-display");
+    scoreDisplayText.innerHTML = `${counterPlayerWin}:${counterCompWin}`;
 
     const buttonRock = document.querySelector(".rock");
     buttonRock.remove();
@@ -66,8 +69,7 @@ function showFinalScore() {
 
     const buttonContainer = document.querySelector(".button-container");
     const newButton = document.createElement("button");
-    /* const buttonText = document.createTextNode("new game");
-    newButton.appendChild(buttonText); */
+    newButton.classList.add("newGame-button");
     newButton.textContent = `new game`;
     newButton.addEventListener('click', startNewGame);
     buttonContainer.appendChild(newButton);
@@ -97,9 +99,10 @@ function createDOMNodes() {
 
     //children of imgOfSelection-container
     const divPlayerImg = document.createElement("div");
+    divPlayerImg.classList.add("player-selection-div");
     imgOfSelectionContainer.appendChild(divPlayerImg);
     const playerSelectionImg = document.createElement("img");
-    playerSelectionImg.classList.add("player-selection");
+    playerSelectionImg.classList.add("player-selection-img");
     playerSelectionImg.src = "./images/paper.png";
     divPlayerImg.appendChild(playerSelectionImg);
     
@@ -109,9 +112,10 @@ function createDOMNodes() {
     imgOfSelectionContainer.appendChild(paraVScontainer);
 
     const divCompImg = document.createElement("div");
+    divCompImg.classList.add("comp-selection-div");
     imgOfSelectionContainer.appendChild(divCompImg);
     const compSelectionImg = document.createElement("img");
-    compSelectionImg.classList.add("comp-selection");
+    compSelectionImg.classList.add("comp-selection-img");
     compSelectionImg.src = "./images/paper.png";
     divCompImg.appendChild(compSelectionImg);
 
@@ -119,11 +123,6 @@ function createDOMNodes() {
     const rightContainer = document.createElement("div");
     rightContainer.classList.add("right-container");
     changeContainer.appendChild(rightContainer);
-
-    const paraTotalScore = document.createTextNode("total Score:");
-    const paraTotalScoreContainer = document.createElement("p");
-    paraTotalScoreContainer.appendChild(paraTotalScore);
-    rightContainer.appendChild(paraTotalScoreContainer);
 
     const scoreDisplay = document.createElement("p");
     scoreDisplay.classList.add("score-display");
@@ -164,7 +163,7 @@ function changeWinLooseAnnouncement(winLoose){
 
 function changeGameStateText(counterClicks){
     const gameStateTextParagraph = document.querySelector(".game-state-text");
-    gameStateTextParagraph.innerHTML = `${counterClicks} out of 5`;  
+    gameStateTextParagraph.innerHTML = `round: ${counterClicks} out of 5`;  
 }
 
 
@@ -174,8 +173,8 @@ function handleButtonClick(playerSelection) {
         createDOMNodes();
     }
     let computerSelection = getComputerChoice();
-    changeImage(playerSelection, ".player-selection");
-    changeImage(computerSelection, ".comp-selection")
+    changeImage(playerSelection, ".player-selection-img");
+    changeImage(computerSelection, ".comp-selection-img")
     let winLoose = playRound(playerSelection, computerSelection);
     changeWinLooseAnnouncement(winLoose);
     changeGameStateText(counterClicks);
