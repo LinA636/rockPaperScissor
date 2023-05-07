@@ -76,7 +76,7 @@ function showFinalScore() {
 }
 
 function startNewGame(){
-    window.location.href = "file:///home/lina/repos/rockPaperScissor/index.html";
+    window.location.reload();
 }
 
 function createDOMNodes() {
