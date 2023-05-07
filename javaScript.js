@@ -76,7 +76,8 @@ function showFinalScore() {
 }
 
 function startNewGame(){
-    location.reload();
+    document.location.reload(true);
+   // location.replace(location.href);
 }
 
 function createDOMNodes() {
