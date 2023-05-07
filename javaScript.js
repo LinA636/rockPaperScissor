@@ -25,33 +25,56 @@ function changeScoreDisplay() {
     if (counterPlayerWin > counterCompWin) {
         // player is leading
         // change "score-display"
-        scoreDisplayText.innerHTML(`You are leading:\n${counterPlayerWin}:${counterCompWin}`);
+        scoreDisplayText.innerHTML = `You are leading:
+            ${counterPlayerWin}:${counterCompWin}`;
     } else if (counterPlayerWin < counterCompWin) {
         // computer is leading
         // change "score-display"
-        scoreDisplayText.innerHTML(`You are loosing:\n${counterPlayerWin}:${counterCompWin}`);
+        scoreDisplayText.innerHTML = `You are loosing:\n${counterPlayerWin}:${counterCompWin}`;
     } else {
         // its a tie
         // change "score-display"
-        scoreDisplayText.innerHTML(`It's a tie:\n${counterPlayerWin}:${counterCompWin}`);
+        scoreDisplayText.innerHTML = `It's a tie:\n${counterPlayerWin}:${counterCompWin}`;
     }
 
 }
 
-function printFinalScore() {
-    // prints finalt score based on the global Variables
-    if (counterPlayerWin > counterCompWin) {
-        // player wins
-        console.log(`Congratulations, you win: ${counterPlayerWin}:${counterCompWin}`);
-        console.log(`You obviously are a master of your chosen weapons.`);
-    } else if (counterPlayerWin < counterCompWin) {
-        // computer is leading
-        console.log(`I'm sorry to tell you, that you lost: ${counterPlayerWin}:${counterCompWin}`);
-        console.log(`Keep training with your weapons.`);
+function showFinalScore() {
+    const imgOfSelectionContainer = document.querySelector(".imgOfSelection-container");
+    imgOfSelectionContainer.remove();
+
+    const gameStateText = document.querySelector(".game-state-text");
+    gameStateText.innerHTML = `Game over`;
+
+    const winLooseAnnouncement = document.querySelector(".win-loose-announcement");
+    if(counterPlayerWin > counterCompWin){
+        winLooseAnnouncement.innerHTML = "You WON!";
+    } else if (counterPlayerWin === counterCompWin){
+        winLooseAnnouncement.innerHTML = "It's a tie!";
     } else {
-        // its a tie
-        console.log(`It's a tie: ${counterPlayerWin}:${counterCompWin}`);
+        winLooseAnnouncement.innerHTML = "You lost.";
     }
+
+    const buttonRock = document.querySelector(".rock");
+    buttonRock.remove();
+
+    const buttonScissor = document.querySelector(".scissor");
+    buttonScissor.remove();
+
+    const buttonPaper = document.querySelector(".paper");
+    buttonPaper.remove();
+
+    const buttonContainer = document.querySelector(".button-container");
+    const newButton = document.createElement("button");
+    /* const buttonText = document.createTextNode("new game");
+    newButton.appendChild(buttonText); */
+    newButton.textContent = `new game`;
+    newButton.addEventListener('click', startNewGame);
+    buttonContainer.appendChild(newButton);
+}
+
+function startNewGame(){
+    window.location.href = "file:///home/lina/repos/rockPaperScissor/index.html";
 }
 
 function createDOMNodes() {
@@ -73,21 +96,24 @@ function createDOMNodes() {
     leftContainer.appendChild(winLooseAnnouncement);
 
     //children of imgOfSelection-container
-// put images in a iv container so they wont change sizes and are the samse    
+    const divPlayerImg = document.createElement("div");
+    imgOfSelectionContainer.appendChild(divPlayerImg);
     const playerSelectionImg = document.createElement("img");
     playerSelectionImg.classList.add("player-selection");
     playerSelectionImg.src = "./images/paper.png";
-    imgOfSelectionContainer.appendChild(playerSelectionImg);
+    divPlayerImg.appendChild(playerSelectionImg);
     
     const paraVS = document.createTextNode("vs.");
     const paraVScontainer = document.createElement("p");
     paraVScontainer.appendChild(paraVS);
     imgOfSelectionContainer.appendChild(paraVScontainer);
 
+    const divCompImg = document.createElement("div");
+    imgOfSelectionContainer.appendChild(divCompImg);
     const compSelectionImg = document.createElement("img");
     compSelectionImg.classList.add("comp-selection");
     compSelectionImg.src = "./images/paper.png";
-    imgOfSelectionContainer.appendChild(compSelectionImg);
+    divCompImg.appendChild(compSelectionImg);
 
     //right-container and its children
     const rightContainer = document.createElement("div");
@@ -124,13 +150,13 @@ function changeWinLooseAnnouncement(winLoose){
     const announcement = document.querySelector(".win-loose-announcement");
     if(winLoose == "won"){
         // change text in "win-loose-announcement"
-        announcement.innerHTML(`Congrats, you won this round!`);
+        announcement.innerHTML = `Congrats, you won this round!`;
     }else if(winLoose == "lost"){
         // change text in "win-loose-announcement"
-        announcement.innerHTML(`Sorry, you lost this round.`);
+        announcement.innerHTML = `Sorry, you lost this round.`;
     }else if(winLoose == "tie"){
         // change text in "win-loose-announcement"
-        announcement.innerHTML(`This is a tie.`);
+        announcement.innerHTML = `This is a tie.`;
     }else{
         // error handling
     }
@@ -154,6 +180,9 @@ function handleButtonClick(playerSelection) {
     changeWinLooseAnnouncement(winLoose);
     changeGameStateText(counterClicks);
     changeScoreDisplay();
+    if(counterClicks == 5){
+        showFinalScore();
+    }
     
 }
 
